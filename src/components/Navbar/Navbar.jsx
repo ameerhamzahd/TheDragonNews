@@ -8,7 +8,7 @@ const Navbar = () => {
             <img className='w-80' src={logo} alt={logo} />
             <p className='text-accent'>Journalism Without Fear or Favour</p>
             <p className='font-semibold text-accent'>{format(new Date(), "EEEE, MMMM MM, yyyy")}</p>
-        </div>
+        </div> 
     );
 };
 
