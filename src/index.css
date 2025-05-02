@@ -19,3 +19,12 @@
 * {
     font-family: "Poppins", sans-serif;
 }
+
+a.active {
+    @apply bg-base-200
+    text-black
+}
+
+.nav > a.active {
+    @apply bg-base-100 border-b-4 border-black
+}

@@ -4,7 +4,7 @@ import user from "../../assets/user.png"
 
 const Navbar = () => {
     return (
-        <div className='grid md:grid-cols-3 gap-3'>
+        <div className='grid md:grid-cols-3 gap-5'>
             <div className=''></div>
             <div className='nav flex gap-3 text-accent justify-center items-center'>
                 <NavLink to="/">Home</NavLink>
