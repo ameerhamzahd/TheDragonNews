@@ -26,5 +26,5 @@ a.active {
 }
 
 .nav > a.active {
-    @apply bg-base-100 border-b-4 border-black
+    @apply bg-base-100 text-black font-bold
 }

@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router";
 import Home from "../layouts/Home/Home";
 import NewsLayout from "../pages/NewsLayout/NewsLayout";
-import Categories from "../pages/CategoryNews/CategoryNews";
+import CategoryNews from "../pages/CategoryNews/CategoryNews";
 
 const router = createBrowserRouter(
     [
@@ -15,7 +15,7 @@ const router = createBrowserRouter(
                 },
                 {
                     path: "/category/:id",
-                    Component: Categories
+                    Component: CategoryNews
                 },
             ]
         },

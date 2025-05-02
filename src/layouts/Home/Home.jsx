@@ -21,7 +21,7 @@ const Home = () => {
                 </nav>
             </header>
 
-            <main className='w-11/12 mx-auto my-3 grid lg:grid-cols-12 '>
+            <main className='w-11/12 mx-auto my-5 grid lg:grid-cols-12 '>
                 <aside className='col-span-3'>
                     <LeftAside></LeftAside>
                 </aside>
