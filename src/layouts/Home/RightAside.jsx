@@ -1,10 +1,12 @@
 import React from 'react';
 import Social from './Social';
+import FindUs from './FindUs';
 
 const RightAside = () => {
     return (
-        <div>
+        <div className='space-y-5'>
             <Social></Social>
+            <FindUs></FindUs>
         </div>
     );
 };
