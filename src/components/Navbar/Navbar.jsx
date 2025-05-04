@@ -1,18 +1,22 @@
-import React from 'react';
+import React, { use } from 'react';
 import { Link, NavLink } from 'react-router';
-import user from "../../assets/user.png"
+import userAvatar from "../../assets/user.png"
+import { AuthContext } from '../../provider/AuthContext';
 
 const Navbar = () => {
-    const unknown = <>
     
-    </>
+    const {user} = use(AuthContext);
+    
+    // const unknown = <>
+    
+    // </>
 
-    const signedInUser = <>
-    </>
+    // const signedInUser = <>
+    // </>
 
     return (
         <div className='grid md:grid-cols-3 gap-5'>
-            <div className=''></div>
+            <div className='flex font-semibold text-accent justify-center items-center'>{user && user.email}</div>
             <div className='nav flex gap-3 text-accent justify-center items-center'>
                 <NavLink to="/">Home</NavLink>
                 <NavLink to="/about">About</NavLink>
@@ -24,7 +28,7 @@ const Navbar = () => {
                         <div className="w-10 rounded-full">
                             <img
                                 alt="Tailwind CSS Navbar component"
-                                src={user} />
+                                src={userAvatar} />
                         </div>
                     </div>
                     <ul
