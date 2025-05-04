@@ -4,11 +4,21 @@ import userAvatar from "../../assets/user.png"
 import { AuthContext } from '../../provider/AuthContext';
 
 const Navbar = () => {
-    
-    const {user} = use(AuthContext);
-    
+
+    const { user, logoutUser } = use(AuthContext);
+
+    const handleLogout = () => {
+        logoutUser()
+        .then(() => {
+            alert("Logged Out Successfully.")
+        })
+        .catch ((error) => {
+            console.log(error)
+        });
+    };
+
     // const unknown = <>
-    
+
     // </>
 
     // const signedInUser = <>
@@ -41,10 +51,14 @@ const Navbar = () => {
                             </a>
                         </li>
                         <li><a>Settings</a></li>
-                        
+
                     </ul>
                 </div>
-                <Link to="/auth/login" className='btn btn-primary px-10'>Login</Link>
+                {
+                    user ? (<Link onClick={handleLogout} to="/auth/login" className='btn btn-primary px-10'>Logout</Link>) : (<Link to="/auth/login" className='btn btn-primary px-10'>Login</Link>)
+                }
+
+                
             </div>
         </div>
     );

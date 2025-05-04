@@ -9,8 +9,8 @@ const Register = () => {
     const handleRegister = (event) => {
         event.preventDefault();
 
-        const name = event.target.name.value;
-        const photoURL = event.target.photoURL.value;
+        // const name = event.target.name.value;
+        // const photoURL = event.target.photoURL.value;
         const email = event.target.email.value;
         const password = event.target.password.value;
 
@@ -19,11 +19,9 @@ const Register = () => {
                 setUser(userCredential.user);
             })
             .catch((error) => {
-                alert(errorMessage);
+                alert(error.message);
             })
-
-            
-    }
+    };
 
     return (
         <div>
