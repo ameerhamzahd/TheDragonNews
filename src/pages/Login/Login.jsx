@@ -5,7 +5,7 @@ const Login = () => {
     return (
         <div className='flex justify-center min-h-screen items-center'>
             <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl py-5">
-                <h2 className='font-semibold text-2xl text-center'>Login Your Account</h2>
+                <h2 className='font-semibold text-2xl text-center'>Login your account</h2>
                 <div className="card-body">
                     <fieldset className="fieldset">
                         <label className="label font-semibold">Email</label>
