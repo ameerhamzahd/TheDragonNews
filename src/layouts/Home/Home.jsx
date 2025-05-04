@@ -22,7 +22,7 @@ const Home = () => {
             </header>
 
             <main className='w-11/12 mx-auto my-5 grid lg:grid-cols-12 gap-5'>
-                <aside className='lg:col-span-3'>
+                <aside className='lg:col-span-3 lg:sticky lg:top-15 lg:h-fit'>
                     <LeftAside></LeftAside>
                 </aside>
 
@@ -30,7 +30,7 @@ const Home = () => {
                     <Outlet></Outlet>
                 </section>
 
-                <aside className='lg:col-span-3'>
+                <aside className='lg:col-span-3 lg:sticky lg:top-15 lg:h-fit'>
                     <RightAside></RightAside>
                 </aside>
             </main>
