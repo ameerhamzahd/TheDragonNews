@@ -25,14 +25,14 @@ const Navbar = () => {
     // </>
 
     return (
-        <div className='grid md:grid-cols-3 gap-5'>
-            <div className='flex font-semibold text-accent justify-center items-center'>{user && user.email}</div>
+        <div className='grid lg:grid-cols-3 gap-5'>
+            <div className='flex font-semibold text-accent justify-center items-center italic'>{user && user.email}</div>
             <div className='nav flex gap-3 text-accent justify-center items-center'>
                 <NavLink to="/">Home</NavLink>
                 <NavLink to="/about">About</NavLink>
                 <NavLink to="/career">Career</NavLink>
             </div>
-            <div className='login flex gap-2 items-center justify-center md:justify-end'>
+            <div className='login flex gap-2 items-center justify-center lg:justify-end'>
                 <div className="dropdown dropdown-end">
                     <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                         <div className="w-10 rounded-full">

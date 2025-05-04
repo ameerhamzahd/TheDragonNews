@@ -1,9 +1,11 @@
 import { FaRegEye, FaStar } from "react-icons/fa";
 import { FiShare2 } from "react-icons/fi";
 import { FaRegBookmark } from "react-icons/fa";
+import { Link } from "react-router";
 
 const NewsCard = ({ eachNews }) => {
     const {
+        id,
         title,
         details,
         thumbnail_url,
@@ -51,9 +53,9 @@ const NewsCard = ({ eachNews }) => {
                 <p className="mb-2">
                     {new Date(author.published_date).toDateString()} | Tag Cloud Tags:{" "}
                     {tags.join(", ")} – {details.slice(0, 200)}... 
-                    <span className="ml-1 text-secondary font-medium cursor-pointer hover:underline">
+                    <Link to={`/news-details/${id}`} className="ml-1 text-secondary font-medium cursor-pointer hover:underline">
                         Read More
-                    </span>
+                    </Link>
                 </p>
             </div>
 
