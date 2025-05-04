@@ -4,15 +4,13 @@ import { FaArrowLeftLong } from "react-icons/fa6";
 
 const NewsDetailsCard = ({ targetedNewsData }) => {
 
-    console.log(targetedNewsData)
-
     const {
         title,
         details,
         thumbnail_url,
         tags,
         category_id,
-        published_date,
+        author
     } = targetedNewsData;
 
     return (
@@ -28,8 +26,8 @@ const NewsDetailsCard = ({ targetedNewsData }) => {
                 <h2 className="card-title text-xl font-bold leading-snug">{title}</h2>
 
                 {/* Tags & Date */}
-                <p className="text-gray-500 text-sm mt-1">
-                    {new Date(published_date).toDateString()} | Tag Cloud Tags: {tags.join(", ")}
+                <p className="text-gray-500 text-sm mt-1 font-semibold">
+                    {new Date(author.published_date).toDateString()} | Tag Cloud Tags: {tags.join(", ")}
                 </p>
 
                 {/* Details */}

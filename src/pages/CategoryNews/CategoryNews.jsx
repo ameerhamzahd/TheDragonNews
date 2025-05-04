@@ -26,7 +26,15 @@ const CategoryNews = () => {
 
     return (
         <div>
-            <h1 className='font-bold mb-5'><span className='text-secondary'>{categoryNews.length}</span> News Found!!!</h1>
+            <h1 className='font-bold mb-5'>
+                {id == "1" ? (
+                    <span className='text-secondary'>Breaking News!!!</span>
+                ) : (
+                    <>
+                        <span className='text-secondary'>{categoryNews.length}</span> News Found!!!
+                    </>
+                )}
+            </h1>
 
             <div className='grid grid-cols-1 gap-5'>
                 {

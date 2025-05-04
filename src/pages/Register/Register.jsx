@@ -1,22 +1,60 @@
-import React, { use } from 'react';
-import { Link } from 'react-router';
+import React, { use, useState } from 'react';
+import { Link, useNavigate } from 'react-router';
 import { AuthContext } from '../../provider/Auth/AuthContext';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const Register = () => {
 
-    const { createUser, setUser } = use(AuthContext);
+    const [error, setErrorMessage] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
+
+    const { createUser, setUser, updateUser } = use(AuthContext);
+
+    const navigate = useNavigate();
 
     const handleRegister = (event) => {
         event.preventDefault();
 
-        // const name = event.target.name.value;
-        // const photoURL = event.target.photoURL.value;
+        const name = event.target.name.value;
+        const photoURL = event.target.photoURL.value;
         const email = event.target.email.value;
         const password = event.target.password.value;
+        const terms = event.target.terms.checked;
+
+        // Name Validation
+        if (name.length < 5) {
+            setErrorMessage("Name should be more than 5 characters.");
+            return;
+        }
+        else {
+            setErrorMessage("");
+        }
+
+        // Password Validation
+        const passwordRegExp = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
+        if (passwordRegExp.test(password) === false) {
+            setErrorMessage('Password must have one lowercase, one uppercase, one digit and 6 characters or longer.')
+            return;
+        }
+
+        // Checkbox Validation
+        if (!terms) {
+            setErrorMessage('Please accept Our Terms and Conditions');
+            return
+        }
 
         createUser(email, password)
             .then((userCredential) => {
-                setUser(userCredential.user);
+                updateUser({ displayName: name, photoURL: photoURL })
+                    .then(() => {
+                        setUser({ ...userCredential.user, displayName: name, photoURL: photoURL });
+
+                        navigate("/")
+                    })
+                    .catch((error) => {
+                        alert(error.message);
+                        setUser(userCredential.user);
+                    })
             })
             .catch((error) => {
                 alert(error.message);
@@ -37,8 +75,28 @@ const Register = () => {
                             <label className="label font-semibold">Email</label>
                             <input name="email" type="email" className="input" placeholder="Email" required />
                             <label className="label font-semibold">Password</label>
-                            <input name='password' type="password" className="input" placeholder="Password" required />
-                            <div></div>
+                            <div className='relative'>
+                                <input
+                                    type={showPassword ? 'text' : 'password'}
+                                    name='password'
+                                    className="input"
+                                    placeholder="Password" />
+                                <a
+                                    onClick={() => { setShowPassword(!showPassword) }}
+                                    className='btn btn-xs absolute top-2 right-6'>
+                                    {
+                                        showPassword ? <FaEyeSlash></FaEyeSlash> : <FaEye></FaEye>
+                                    }
+                                </a>
+                            </div>
+
+                            <label className="label mt-3 font-semibold">
+                                <input name='terms' type="checkbox" className="checkbox" />
+                                Accept Terms & Conditions
+                            </label>
+
+                            <div><a className="font-semibold text-red-300">{error}</a></div>
+
                             <button type='submit' className="btn btn-neutral mt-4">Register</button>
                         </fieldset>
 

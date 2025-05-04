@@ -50,9 +50,9 @@ const NewsCard = ({ eachNews }) => {
 
             {/* Description */}
             <div className="px-4 py-3 text-sm text-gray-600">
-                <p className="mb-2">
+                <p className="mb-2 font-medium">
                     {new Date(author.published_date).toDateString()} | Tag Cloud Tags:{" "}
-                    {tags.join(", ")} – {details.slice(0, 200)}... 
+                    {tags.join(", ")} – {details.slice(0, 200)}...
                     <Link to={`/news-details/${id}`} className="ml-1 text-secondary font-medium cursor-pointer hover:underline">
                         Read More
                     </Link>

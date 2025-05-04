@@ -1,10 +1,18 @@
-import React, { use } from 'react';
-import { Link } from 'react-router';
+import React, { use, useRef, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../../provider/Auth/AuthContext';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { sendPasswordResetEmail } from "firebase/auth";
+import { auth } from '../../firebase/Firebase.config';
 
 const Login = () => {
 
     const { loginUser, setUser } = use(AuthContext);
+    const location = useLocation();
+    const navigate = useNavigate();
+    const [error, setError] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
+    const emailRef = useRef();
 
     const handleLogin = (event) => {
         event.preventDefault();
@@ -15,10 +23,23 @@ const Login = () => {
         loginUser(email, password)
             .then((userCredential) => {
                 setUser(userCredential.user);
-                console.log(userCredential.user);
+                navigate(`${location.state ? location.state : "/"}`)
             })
             .catch((error) => {
-                alert(error.message);
+                setError(error.code);
+            })
+    }
+
+    const handleForgetPassword = () => {
+        const email = emailRef.current.value;
+
+        setError("");
+        sendPasswordResetEmail(auth, email)
+            .then(() => {
+                alert('Password reset email sent!!!');
+            })
+            .catch(error => {
+                setError(error.message);
             })
     }
 
@@ -29,10 +50,24 @@ const Login = () => {
                 <form onSubmit={handleLogin} className="card-body">
                     <fieldset className="fieldset">
                         <label className="label font-semibold">Email</label>
-                        <input name='email' type="email" className="input" placeholder="Email" required/>
+                        <input name='email' type="email" className="input" placeholder="Email" ref={emailRef} required />
                         <label className="label font-semibold">Password</label>
-                        <input name='password' type="password" className="input" placeholder="Password" required/>
-                        <div><a className="link link-hover font-semibold">Forgot password?</a></div>
+                        <div className='relative'>
+                            <input
+                                type={showPassword ? 'text' : 'password'}
+                                name='password'
+                                className="input"
+                                placeholder="Password" />
+                            <a
+                                onClick={() => { setShowPassword(!showPassword) }}
+                                className='btn btn-xs absolute top-2 right-6'>
+                                {
+                                    showPassword ? <FaEyeSlash></FaEyeSlash> : <FaEye></FaEye>
+                                }
+                            </a>
+                        </div>
+                        <div onClick={handleForgetPassword}><a className="link link-hover font-semibold">Forgot password?</a></div>
+                        <div><a className="font-semibold text-red-300">{error}</a></div>
                         <button type='submit' className="btn btn-neutral mt-4">Login</button>
                     </fieldset>
 
