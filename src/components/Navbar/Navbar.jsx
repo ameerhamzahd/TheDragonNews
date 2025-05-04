@@ -1,7 +1,7 @@
 import React, { use } from 'react';
 import { Link, NavLink } from 'react-router';
 import userAvatar from "../../assets/user.png"
-import { AuthContext } from '../../provider/AuthContext';
+import { AuthContext } from '../../provider/Auth/AuthContext';
 
 const Navbar = () => {
 
